@@ -23,6 +23,7 @@ How to use the plugin?
 - Enable the desired device type
 - Go on the track and select the desired dashboard from SimHub
 - The selected dashboard will appear in the designed cars dashboard list of the plugin
+- Also you can define a default dashboard per game using the "Set as default dashboard for this game" button
 
 Please report feedback.
 
