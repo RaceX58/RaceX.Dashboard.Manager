@@ -9,6 +9,8 @@ The plugin works for the following devices :
 - USBD480
 - AX206
 - Corsair Nexus
+- Second Monitor
+- Third Monitor
 
 How to install the plugin ?
 
