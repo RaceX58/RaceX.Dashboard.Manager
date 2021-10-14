@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceX.Dashboard.Manager", "RaceX.Dashboard.Manager\RaceX.Dashboard.Manager.csproj", "{CA63F210-5E55-424E-8353-FB0EF41200D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA63F210-5E55-424E-8353-FB0EF41200D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA63F210-5E55-424E-8353-FB0EF41200D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA63F210-5E55-424E-8353-FB0EF41200D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA63F210-5E55-424E-8353-FB0EF41200D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFE9FF0E-1F22-43AA-ABA5-759911B22438}
+	EndGlobalSection
+EndGlobal
