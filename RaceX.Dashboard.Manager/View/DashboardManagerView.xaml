@@ -18,388 +18,419 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis"/>
     </UserControl.Resources>
-    <StackPanel>
-        <styles:SHTabControl>
-            <styles:SHTabItem
-                Header="VOCORE"
-                >
-                <StackPanel>
-                    <StackPanel
-                        Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Margin="20,20,0,20"
-                        >
-                        <TextBlock
-                            Text="Enable VOCORE automatic dashboard selection"
-                            />
-                        <styles:SHToggleButton
-                            Margin="20,0,0,0"
-                            Content="Enable plugin"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            IsChecked="{Binding Settings.IsVocorePluginEnabled}"
-                            />
-                    </StackPanel>
-                    <StackPanel
-                        Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
+    <styles:SHTabControl>
+        <styles:SHTabItem
+            Header="VOCORE"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Margin="20,20,0,20"
+                    >
+                    <TextBlock
+                        Text="Enable VOCORE automatic dashboard selection"
+                        />
+                    <styles:SHToggleButton
                         Margin="20,0,0,0"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="Current game"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentGame}"
-                            Width="150"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            Text="Current dashboard"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentVOCOREDashboard}"
-                            Width="200"
-                            VerticalAlignment="Center"
-                            />
-                        <styles:SHButtonPrimary
-                            Margin="10,0,0,0"
-                            Content="Set as default dashboard for this game"
-                            Command="{Binding SetDefaultDashboardCommand}"
-                            CommandParameter="VOCORE"
-                            />
-                    </StackPanel>
-                    <styles:SHSection
-                        Margin="0,20,0,0"
-                        Title="Defined cars dashboard"
-                        Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
-                        >
-                        <ListView             
-                            ItemsSource="{Binding VocoreCarDashboards}"                
-                            >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
-                                        <GridViewColumnHeader Content="Game" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
-                                        <GridViewColumnHeader Content="Car" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
-                                        <GridViewColumnHeader Content="Dashboard" />
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    CommandParameter="{Binding}"                                         
-                                                    >
-                                                    <iconPacks:PackIconMaterial                 
-                                                        Kind="Delete" 
-                                                    />
-                                                </Button>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </styles:SHSection>
-                </StackPanel>
-            </styles:SHTabItem>
-            <styles:SHTabItem
-                Header="USBD480"
-                >
-                <StackPanel>
-                    <StackPanel
-                        Orientation="Horizontal"
+                        Content="Enable plugin"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="20,20,0,20"
-                        >
-                        <TextBlock
-                            Text="Enable USBD480 automatic dashboard selection"
-                            />
-                        <styles:SHToggleButton
-                            Margin="20,0,0,0"
-                            Content="Enable plugin"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            IsChecked="{Binding Settings.IsUSBD480PluginEnabled}"
-                            />
-                    </StackPanel>
-                    <StackPanel
-                        Visibility="{Binding Settings.IsUSBD480PluginEnabled, Converter={StaticResource boolToVis}}"
-                        Margin="20,0,0,0"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="Current game"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentGame}"
-                            Width="150"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            Text="Current dashboard"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentUSBD480Dashboard}"
-                            Width="200"
-                            VerticalAlignment="Center"
-                            />
-                        <styles:SHButtonPrimary
-                            Margin="10,0,0,0"
-                            Content="Set as default dashboard for this game"
-                            Command="{Binding SetDefaultDashboardCommand}"
-                            CommandParameter="USBD480"
-                            />
-                    </StackPanel>
-                    <styles:SHSection
-                         Margin="0,20,0,0"
-                        Title="Defined cars dashboard"
-                        Visibility="{Binding Settings.IsUSBD480PluginEnabled, Converter={StaticResource boolToVis}}"
-                        >
-                        <ListView             
-                            ItemsSource="{Binding USBD480CarDashboards}"                
-                            >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
-                                        <GridViewColumnHeader Content="Game" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
-                                        <GridViewColumnHeader Content="Car" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
-                                        <GridViewColumnHeader Content="Dashboard" />
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    CommandParameter="{Binding}"                                         
-                                                    >
-                                                    <iconPacks:PackIconMaterial                 
-                                                        Kind="Delete" 
-                                                    />
-                                                </Button>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </styles:SHSection>
+                        IsChecked="{Binding Settings.IsVocorePluginEnabled}"
+                        />
                 </StackPanel>
-            </styles:SHTabItem>
-            <styles:SHTabItem
-                Header="AX206"
-                >
-                <StackPanel>
-                    <StackPanel
-                        Orientation="Horizontal"
+                <StackPanel
+                     Grid.Row="1"
+                    Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
+                    Margin="20,0,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Text="Current game"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentGame}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        Text="Current dashboard"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentVOCOREDashboard}"
+                        Width="200"
+                        VerticalAlignment="Center"
+                        />
+                    <styles:SHButtonPrimary
+                        Margin="10,0,0,0"
+                        Content="Set as default dashboard for this game"
+                        Command="{Binding SetDefaultDashboardCommand}"
+                        CommandParameter="VOCORE"
+                        />
+                </StackPanel>
+                <styles:SHSection
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    Title="Defined cars dashboard"
+                    Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
+                    >
+                    <ListView             
+                        ItemsSource="{Binding VocoreCarDashboards}"                
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                    <GridViewColumnHeader Content="Game" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                    <GridViewColumnHeader Content="Car" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                    <GridViewColumnHeader Content="Dashboard" />
+                                </GridViewColumn>
+                                <GridViewColumn Width="50" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"                                         
+                                                >
+                                                <iconPacks:PackIconMaterial                 
+                                                    Kind="Delete" 
+                                                />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </styles:SHSection>
+            </Grid>
+        </styles:SHTabItem>
+        <styles:SHTabItem
+            Header="USBD480"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Margin="20,20,0,20"
+                    >
+                    <TextBlock
+                        Text="Enable USBD480 automatic dashboard selection"
+                        />
+                    <styles:SHToggleButton
+                        Margin="20,0,0,0"
+                        Content="Enable plugin"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="20,20,0,20"
-                        >
-                        <TextBlock
-                            Text="Enable AX206 automatic dashboard selection"
-                            />
-                        <styles:SHToggleButton
-                            Margin="20,0,0,0"                           
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            IsChecked="{Binding Settings.IsAX206PluginEnabled}"
-                            />
-                    </StackPanel>
-                    <StackPanel
-                        Visibility="{Binding Settings.IsAX206PluginEnabled, Converter={StaticResource boolToVis}}"
-                        Margin="20,0,0,0"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="Current game"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentGame}"
-                            Width="150"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            Text="Current dashboard"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentAX206Dashboard}"
-                            Width="200"
-                            VerticalAlignment="Center"
-                            />
-                        <styles:SHButtonPrimary
-                            Margin="10,0,0,0"
-                            Content="Set as default dashboard for this game"
-                            Command="{Binding SetDefaultDashboardCommand}"
-                            CommandParameter="AX206"
-                            />
-                    </StackPanel>
-                    <styles:SHSection
-                         Margin="0,20,0,0"
-                        Title="Defined cars dashboard"
-                        Visibility="{Binding Settings.IsAX206PluginEnabled, Converter={StaticResource boolToVis}}"
-                        >
-                        <ListView             
-                            ItemsSource="{Binding AX206CarDashboards}"                
-                            >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
-                                        <GridViewColumnHeader Content="Game" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
-                                        <GridViewColumnHeader Content="Car" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
-                                        <GridViewColumnHeader Content="Dashboard" />
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding}"                                         
-                                            >
-                                                    <iconPacks:PackIconMaterial                 
-                                                Kind="Delete" 
-                                            />
-                                                </Button>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>   
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </styles:SHSection>
+                        IsChecked="{Binding Settings.IsUSBD480PluginEnabled}"
+                        />
                 </StackPanel>
-            </styles:SHTabItem>
-            <styles:SHTabItem
-                Header="Corsair Nexus"
-                >
-                <StackPanel>
-                    <StackPanel
-                        Orientation="Horizontal"
+                <StackPanel
+                    Grid.Row="1"
+                    Visibility="{Binding Settings.IsUSBD480PluginEnabled, Converter={StaticResource boolToVis}}"
+                    Margin="20,0,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Text="Current game"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentGame}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        Text="Current dashboard"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentUSBD480Dashboard}"
+                        Width="200"
+                        VerticalAlignment="Center"
+                        />
+                    <styles:SHButtonPrimary
+                        Margin="10,0,0,0"
+                        Content="Set as default dashboard for this game"
+                        Command="{Binding SetDefaultDashboardCommand}"
+                        CommandParameter="USBD480"
+                        />
+                </StackPanel>
+                <styles:SHSection
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    Title="Defined cars dashboard"
+                    Visibility="{Binding Settings.IsUSBD480PluginEnabled, Converter={StaticResource boolToVis}}"
+                    >
+                    <ListView             
+                        ItemsSource="{Binding USBD480CarDashboards}"                
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                    <GridViewColumnHeader Content="Game" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                    <GridViewColumnHeader Content="Car" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                    <GridViewColumnHeader Content="Dashboard" />
+                                </GridViewColumn>
+                                <GridViewColumn Width="50" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"                                         
+                                                >
+                                                <iconPacks:PackIconMaterial                 
+                                                    Kind="Delete" 
+                                                />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </styles:SHSection>
+            </Grid>
+        </styles:SHTabItem>
+        <styles:SHTabItem
+            Header="AX206"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Margin="20,20,0,20"
+                    >
+                    <TextBlock
+                        Text="Enable AX206 automatic dashboard selection"
+                        />
+                    <styles:SHToggleButton
+                        Margin="20,0,0,0"                           
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="20,20,0,20"
-                        >
-                        <TextBlock
-                            Text="Enable Corsair Nexus automatic dashboard selection"
-                            />
-                        <styles:SHToggleButton
-                            Margin="20,0,0,0"
-                            Content="Enable plugin"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            IsChecked="{Binding Settings.IsCorsairNexuPluginEnabled}"
-                            />
-                    </StackPanel>
-                    <StackPanel
-                        Visibility="{Binding Settings.IsCorsairNexuPluginEnabled, Converter={StaticResource boolToVis}}"
-                        Margin="20,0,0,0"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="Current game"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentGame}"
-                            Width="150"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            Text="Current dashboard"
-                            VerticalAlignment="Center"
-                            />
-                        <TextBox
-                            Margin="10,0,0,0"
-                            IsEnabled="False"
-                            Text="{Binding CurrentNexusCorsairDashboard}"
-                            Width="200"
-                            VerticalAlignment="Center"
-                            />
-                        <styles:SHButtonPrimary
-                            Margin="10,0,0,0"
-                            Content="Set as default dashboard for this game"
-                            Command="{Binding SetDefaultDashboardCommand}"
-                            CommandParameter="CorsairNexus"
-                            />
-                    </StackPanel>
-                    <styles:SHSection
-                         Margin="0,20,0,0"
-                        Title="Defined cars dashboard"
-                        Visibility="{Binding Settings.IsCorsairNexuPluginEnabled, Converter={StaticResource boolToVis}}"
-                        >
-                        <ListView             
-                            ItemsSource="{Binding CorsairNexusCarDashboards}"                
-                            >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
-                                        <GridViewColumnHeader Content="Game" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
-                                        <GridViewColumnHeader Content="Car" />
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
-                                        <GridViewColumnHeader Content="Dashboard" />
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    CommandParameter="{Binding}"                                         
-                                            >
-                                                    <iconPacks:PackIconMaterial                 
-                                                        Kind="Delete" 
-                                                    />
-                                                </Button>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>   
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </styles:SHSection>
+                        IsChecked="{Binding Settings.IsAX206PluginEnabled}"
+                        />
                 </StackPanel>
-            </styles:SHTabItem>           
-        </styles:SHTabControl>
-       
-    </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Visibility="{Binding Settings.IsAX206PluginEnabled, Converter={StaticResource boolToVis}}"
+                    Margin="20,0,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Text="Current game"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentGame}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        Text="Current dashboard"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentAX206Dashboard}"
+                        Width="200"
+                        VerticalAlignment="Center"
+                        />
+                    <styles:SHButtonPrimary
+                        Margin="10,0,0,0"
+                        Content="Set as default dashboard for this game"
+                        Command="{Binding SetDefaultDashboardCommand}"
+                        CommandParameter="AX206"
+                        />
+                </StackPanel>
+                <styles:SHSection
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    Title="Defined cars dashboard"
+                    Visibility="{Binding Settings.IsAX206PluginEnabled, Converter={StaticResource boolToVis}}"
+                    >
+                    <ListView             
+                        ItemsSource="{Binding AX206CarDashboards}"                
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                    <GridViewColumnHeader Content="Game" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                    <GridViewColumnHeader Content="Car" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                    <GridViewColumnHeader Content="Dashboard" />
+                                </GridViewColumn>
+                                <GridViewColumn Width="50" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}"                                         
+                                        >
+                                                <iconPacks:PackIconMaterial                 
+                                            Kind="Delete" 
+                                        />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </styles:SHSection>
+            </Grid>
+        </styles:SHTabItem>
+        <styles:SHTabItem
+            Header="Corsair Nexus"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Margin="20,20,0,20"
+                    >
+                    <TextBlock
+                        Text="Enable Corsair Nexus automatic dashboard selection"
+                        />
+                    <styles:SHToggleButton
+                        Margin="20,0,0,0"
+                        Content="Enable plugin"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        IsChecked="{Binding Settings.IsCorsairNexuPluginEnabled}"
+                        />
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Visibility="{Binding Settings.IsCorsairNexuPluginEnabled, Converter={StaticResource boolToVis}}"
+                    Margin="20,0,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Text="Current game"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentGame}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        Text="Current dashboard"
+                        VerticalAlignment="Center"
+                        />
+                    <TextBox
+                        Margin="10,0,0,0"
+                        IsEnabled="False"
+                        Text="{Binding CurrentNexusCorsairDashboard}"
+                        Width="200"
+                        VerticalAlignment="Center"
+                        />
+                    <styles:SHButtonPrimary
+                        Margin="10,0,0,0"
+                        Content="Set as default dashboard for this game"
+                        Command="{Binding SetDefaultDashboardCommand}"
+                        CommandParameter="CorsairNexus"
+                        />
+                </StackPanel>
+                <styles:SHSection
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    Title="Defined cars dashboard"
+                    Visibility="{Binding Settings.IsCorsairNexuPluginEnabled, Converter={StaticResource boolToVis}}"
+                    >
+                    <ListView             
+                        ItemsSource="{Binding CorsairNexusCarDashboards}"                
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                    <GridViewColumnHeader Content="Game" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                    <GridViewColumnHeader Content="Car" />
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                    <GridViewColumnHeader Content="Dashboard" />
+                                </GridViewColumn>
+                                <GridViewColumn Width="50" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"                                         
+                                        >
+                                                <iconPacks:PackIconMaterial                 
+                                                    Kind="Delete" 
+                                                />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </styles:SHSection>
+            </Grid>
+        </styles:SHTabItem>
+    </styles:SHTabControl>
+
+
 </UserControl>
