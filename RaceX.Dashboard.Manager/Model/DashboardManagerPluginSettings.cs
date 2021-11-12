@@ -12,6 +12,9 @@ namespace RaceX.Dashboard.Manager.Model
         #region Fields
         private ObservableCollection<CarDashboard> _CarDashboards = new ObservableCollection<CarDashboard>();
         private bool _IsVocorePluginEnabled;
+        private bool _IsVocore2PluginEnabled;
+        private bool _IsVocore3PluginEnabled;
+        private bool _IsVocore4PluginEnabled;
         private bool _IsUSBD480PluginEnabled;
         private bool _IsAX206PluginEnabled;
         private bool _IsCorsairNexuPluginEnabled;
@@ -27,6 +30,21 @@ namespace RaceX.Dashboard.Manager.Model
         {
             get { return _IsVocorePluginEnabled; }
             set { _IsVocorePluginEnabled = value; OnPropertyChanged("IsVocorePluginEnabled"); }
+        }
+        public bool IsVocore2PluginEnabled
+        {
+            get { return _IsVocore2PluginEnabled; }
+            set { _IsVocore2PluginEnabled = value; OnPropertyChanged("IsVocore2PluginEnabled"); }
+        }
+        public bool IsVocore3PluginEnabled
+        {
+            get { return _IsVocore3PluginEnabled; }
+            set { _IsVocore3PluginEnabled = value; OnPropertyChanged("IsVocore3PluginEnabled"); }
+        }
+        public bool IsVocore4PluginEnabled
+        {
+            get { return _IsVocore4PluginEnabled; }
+            set { _IsVocore4PluginEnabled = value; OnPropertyChanged("IsVocore4PluginEnabled"); }
         }
         public bool IsUSBD480PluginEnabled
         {

@@ -22,105 +22,417 @@
         <styles:SHTabItem
             Header="VOCORE"
             >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel
-                    Grid.Row="0"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Top"
-                    Margin="20,20,0,20"
-                    >
-                    <TextBlock
-                        Text="Enable VOCORE automatic dashboard selection"
-                        />
-                    <styles:SHToggleButton
-                        Margin="20,0,0,0"
-                        Content="Enable plugin"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        IsChecked="{Binding Settings.IsVocorePluginEnabled}"
-                        />
-                </StackPanel>
-                <StackPanel
-                     Grid.Row="1"
-                    Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
-                    Margin="20,0,0,0"
-                    Orientation="Horizontal">
-                    <TextBlock
-                        Text="Current game"
-                        VerticalAlignment="Center"
-                        />
-                    <TextBox
-                        Margin="10,0,0,0"
-                        IsEnabled="False"
-                        Text="{Binding CurrentGame}"
-                        Width="150"
-                        VerticalAlignment="Center"
-                        />
-                    <TextBlock
-                        Margin="10,0,0,0"
-                        Text="Current dashboard"
-                        VerticalAlignment="Center"
-                        />
-                    <TextBox
-                        Margin="10,0,0,0"
-                        IsEnabled="False"
-                        Text="{Binding CurrentVOCOREDashboard}"
-                        Width="200"
-                        VerticalAlignment="Center"
-                        />
-                    <styles:SHButtonPrimary
-                        Margin="10,0,0,0"
-                        Content="Set as default dashboard for this game"
-                        Command="{Binding SetDefaultDashboardCommand}"
-                        CommandParameter="VOCORE"
-                        />
-                </StackPanel>
-                <styles:SHSection
-                    Grid.Row="2"
-                    Margin="0,20,0,0"
-                    Title="Defined cars dashboard"
-                    Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
-                    >
-                    <ListView             
-                        ItemsSource="{Binding VocoreCarDashboards}"                
-                        >
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
-                                    <GridViewColumnHeader Content="Game" />
-                                </GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
-                                    <GridViewColumnHeader Content="Car" />
-                                </GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
-                                    <GridViewColumnHeader Content="Dashboard" />
-                                </GridViewColumn>
-                                <GridViewColumn Width="50" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"                                         
-                                                >
-                                                <iconPacks:PackIconMaterial                 
-                                                    Kind="Delete" 
-                                                />
-                                            </Button>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </styles:SHSection>
-            </Grid>
+            <styles:SHTabControl>
+                <styles:SHTabItem
+                    Header="SCREEN 1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="20,20,0,20"
+                            >
+                            <TextBlock
+                                Text="Enable VOCORE automatic dashboard selection"
+                                />
+                            <styles:SHToggleButton
+                                Margin="20,0,0,0"
+                                Content="Enable plugin"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                IsChecked="{Binding Settings.IsVocorePluginEnabled}"
+                                />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
+                            Margin="20,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Text="Current game"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentGame}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                Text="Current dashboard"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentVOCOREDashboard}"
+                                Width="200"
+                                VerticalAlignment="Center"
+                                />
+                            <styles:SHButtonPrimary
+                                Margin="10,0,0,0"
+                                Content="Set as default dashboard for this game"
+                                Command="{Binding SetDefaultDashboardCommand}"
+                                CommandParameter="VOCORE"
+                                />
+                        </StackPanel>
+                        <styles:SHSection
+                            Grid.Row="2"
+                            Margin="0,20,0,0"
+                            Title="Defined cars dashboard"
+                            Visibility="{Binding Settings.IsVocorePluginEnabled, Converter={StaticResource boolToVis}}"
+                            >
+                            <ListView             
+                                ItemsSource="{Binding VocoreCarDashboards}"                
+                                >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                            <GridViewColumnHeader Content="Game" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                            <GridViewColumnHeader Content="Car" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                            <GridViewColumnHeader Content="Dashboard" />
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="50" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"                                         
+                                                        >
+                                                        <iconPacks:PackIconMaterial                 
+                                                            Kind="Delete" 
+                                                        />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </styles:SHSection>
+                    </Grid>
+                </styles:SHTabItem>
+                <styles:SHTabItem
+                    Header="SCREEN 2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="20,20,0,20"
+                            >
+                            <TextBlock
+                                Text="Enable VOCORE_2 automatic dashboard selection"
+                                />
+                            <styles:SHToggleButton
+                                Margin="20,0,0,0"
+                                Content="Enable plugin"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                IsChecked="{Binding Settings.IsVocore2PluginEnabled}"
+                                />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Visibility="{Binding Settings.IsVocore2PluginEnabled, Converter={StaticResource boolToVis}}"
+                            Margin="20,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Text="Current game"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentGame}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                Text="Current dashboard"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentVOCORE2Dashboard}"
+                                Width="200"
+                                VerticalAlignment="Center"
+                                />
+                            <styles:SHButtonPrimary
+                                Margin="10,0,0,0"
+                                Content="Set as default dashboard for this game"
+                                Command="{Binding SetDefaultDashboardCommand}"
+                                CommandParameter="VOCORE2"
+                                />
+                        </StackPanel>
+                        <styles:SHSection
+                            Grid.Row="2"
+                            Margin="0,20,0,0"
+                            Title="Defined cars dashboard"
+                            Visibility="{Binding Settings.IsVocore2PluginEnabled, Converter={StaticResource boolToVis}}"
+                            >
+                            <ListView             
+                                ItemsSource="{Binding Vocore2CarDashboards}"                
+                                >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                            <GridViewColumnHeader Content="Game" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                            <GridViewColumnHeader Content="Car" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                            <GridViewColumnHeader Content="Dashboard" />
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="50" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"                                         
+                                                        >
+                                                        <iconPacks:PackIconMaterial                 
+                                                            Kind="Delete" 
+                                                        />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </styles:SHSection>
+                    </Grid>
+                </styles:SHTabItem>
+                <styles:SHTabItem
+                    Header="SCREEN 3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="20,20,0,20"
+                            >
+                            <TextBlock
+                                Text="Enable VOCORE_3 automatic dashboard selection"
+                                />
+                            <styles:SHToggleButton
+                                Margin="20,0,0,0"
+                                Content="Enable plugin"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                IsChecked="{Binding Settings.IsVocore3PluginEnabled}"
+                                />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Visibility="{Binding Settings.IsVocore3PluginEnabled, Converter={StaticResource boolToVis}}"
+                            Margin="20,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Text="Current game"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentGame}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                Text="Current dashboard"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentVOCORE3Dashboard}"
+                                Width="200"
+                                VerticalAlignment="Center"
+                                />
+                            <styles:SHButtonPrimary
+                                Margin="10,0,0,0"
+                                Content="Set as default dashboard for this game"
+                                Command="{Binding SetDefaultDashboardCommand}"
+                                CommandParameter="VOCORE3"
+                                />
+                        </StackPanel>
+                        <styles:SHSection
+                            Grid.Row="2"
+                            Margin="0,20,0,0"
+                            Title="Defined cars dashboard"
+                            Visibility="{Binding Settings.IsVocore3PluginEnabled, Converter={StaticResource boolToVis}}"
+                            >
+                            <ListView             
+                                ItemsSource="{Binding Vocore3CarDashboards}"                
+                                >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                            <GridViewColumnHeader Content="Game" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                            <GridViewColumnHeader Content="Car" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                            <GridViewColumnHeader Content="Dashboard" />
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="50" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"                                         
+                                                        >
+                                                        <iconPacks:PackIconMaterial                 
+                                                            Kind="Delete" 
+                                                        />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </styles:SHSection>
+                    </Grid>
+                </styles:SHTabItem>
+                <styles:SHTabItem
+                    Header="SCREEN 4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="20,20,0,20"
+                            >
+                            <TextBlock
+                                Text="Enable VOCORE_4 automatic dashboard selection"
+                                />
+                            <styles:SHToggleButton
+                                Margin="20,0,0,0"
+                                Content="Enable plugin"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                IsChecked="{Binding Settings.IsVocore4PluginEnabled}"
+                                />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Visibility="{Binding Settings.IsVocore4PluginEnabled, Converter={StaticResource boolToVis}}"
+                            Margin="20,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Text="Current game"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentGame}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                Text="Current dashboard"
+                                VerticalAlignment="Center"
+                                />
+                            <TextBox
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Text="{Binding CurrentVOCORE4Dashboard}"
+                                Width="200"
+                                VerticalAlignment="Center"
+                                />
+                            <styles:SHButtonPrimary
+                                Margin="10,0,0,0"
+                                Content="Set as default dashboard for this game"
+                                Command="{Binding SetDefaultDashboardCommand}"
+                                CommandParameter="VOCORE4"
+                                />
+                        </StackPanel>
+                        <styles:SHSection
+                            Grid.Row="2"
+                            Margin="0,20,0,0"
+                            Title="Defined cars dashboard"
+                            Visibility="{Binding Settings.IsVocore4PluginEnabled, Converter={StaticResource boolToVis}}"
+                            >
+                            <ListView             
+                                ItemsSource="{Binding Vocore4CarDashboards}"                
+                                >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Game}" Width="150">
+                                            <GridViewColumnHeader Content="Game" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Car}" Width="200">
+                                            <GridViewColumnHeader Content="Car" />
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding DashboardName}" Width="300" >
+                                            <GridViewColumnHeader Content="Dashboard" />
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="50" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Command="{Binding Path=DataContext.DeleteCarDashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"                                         
+                                                        >
+                                                        <iconPacks:PackIconMaterial                 
+                                                            Kind="Delete" 
+                                                        />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </styles:SHSection>
+                    </Grid>
+                </styles:SHTabItem>
+            </styles:SHTabControl>
+           
         </styles:SHTabItem>
         <styles:SHTabItem
             Header="USBD480"
