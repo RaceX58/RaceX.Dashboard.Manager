@@ -16,7 +16,7 @@ Download the latest release from the Releases section :
 https://github.com/RaceX58/RaceX.Dashboard.Manager/releases
 
 Extract the zip file in your SimHub program directory.
-Lauch SimHub and activate the plugin.
+Launch SimHub and activate the plugin.
 
 How to use the plugin?
 
