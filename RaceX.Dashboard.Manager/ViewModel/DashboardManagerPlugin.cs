@@ -90,49 +90,49 @@ namespace RaceX.Dashboard.Manager.ViewModel
         {
             get
             {
-                return new ObservableCollection<CarDashboard>( new ObservableCollection<CarDashboard>( Settings.CarDashboards.Where(x => x.DeviceType == "Vocore")).OrderBy(x=>x.Game).ThenBy(x=>x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>( new ObservableCollection<CarDashboard>( Settings.CarDashboards.Where(x => x.DeviceType == "Vocore")).OrderBy(x=>x.Game).ThenBy(x=>x.Car));
             }
         }
         public ObservableCollection<CarDashboard> Vocore2CarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore2")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore2")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         public ObservableCollection<CarDashboard> Vocore3CarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore3")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore3")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         public ObservableCollection<CarDashboard> Vocore4CarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore4")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "Vocore4")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         public ObservableCollection<CarDashboard> USBD480CarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "USBD480")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "USBD480")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         public ObservableCollection<CarDashboard> AX206CarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "AX206")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "AX206")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         public ObservableCollection<CarDashboard> CorsairNexusCarDashboards
         {
             get
             {
-                return new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "CorsairNexus")).OrderBy(x => x.Game).ThenBy(x => x.Car));
+                return Settings is null ? null : new ObservableCollection<CarDashboard>(new ObservableCollection<CarDashboard>(Settings.CarDashboards.Where(x => x.DeviceType == "CorsairNexus")).OrderBy(x => x.Game).ThenBy(x => x.Car));
             }
         }
         #endregion
@@ -302,8 +302,7 @@ namespace RaceX.Dashboard.Manager.ViewModel
             OnPropertyChanged("USBD480CarDashboards");
             OnPropertyChanged("AX206CarDashboards");
             OnPropertyChanged("CorsairNexusCarDashboards");
-            OnPropertyChanged("SecondMonitorCarDashboards");
-            OnPropertyChanged("ThirdMonitorCarDashboards");
+ 
         }
         #endregion
 
