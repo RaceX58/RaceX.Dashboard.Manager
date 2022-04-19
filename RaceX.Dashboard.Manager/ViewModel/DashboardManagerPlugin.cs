@@ -165,11 +165,11 @@ namespace RaceX.Dashboard.Manager.ViewModel
             if (deviceType == "VOCORE4")
                 return _CurrentVOCORE4Dashboard != null;
             if (deviceType == "USBD480")
-                return _CurrentVOCOREDashboard != null;
+                return _CurrentUSBD480Dashboard != null;
             if (deviceType == "AX206")
-                return _CurrentVOCOREDashboard != null;
+                return _CurrentAX206Dashboard != null;
             if (deviceType == "CorsairNexus")
-                return _CurrentVOCOREDashboard != null;
+                return _CurrentNexusCorsairDashboard != null;
             return false;
         }
         public void SetDefaultDashboardExecuted(string deviceType)
@@ -301,8 +301,7 @@ namespace RaceX.Dashboard.Manager.ViewModel
             OnPropertyChanged("Vocore4CarDashboards");
             OnPropertyChanged("USBD480CarDashboards");
             OnPropertyChanged("AX206CarDashboards");
-            OnPropertyChanged("CorsairNexusCarDashboards");
- 
+            OnPropertyChanged("CorsairNexusCarDashboards"); 
         }
         #endregion
 
